@@ -8,13 +8,11 @@ import pickle
 from sklearn.metrics import confusion_matrix, f1_score, recall_score, precision_score
 
 
-#Initialize transformers
-
+# Initialize transformers
 def initialize_transformer():
   shape = (1, 3, 56, 92)
   transformer = caffe.io.Transformer({'data': shape})
   
-  #transformer.set_mean('data', channel_mean)
   transformer.set_raw_scale('data', 255)
   transformer.set_channel_swap('data', (2, 1, 0))
   transformer.set_transpose('data', (2, 0, 1))
@@ -35,7 +33,7 @@ for val in lines:
 RGB_images = values
 
 #classify images with singleFrame model
-def singleFrame_classify_images(frames, net, transformer):
+def classify_images(frames, net, transformer):
 
   input_images = []
   c=0
@@ -68,13 +66,13 @@ def plot_confusion_matrix(cm, title='Confusion matrix', cmap=plt.cm.Blues):
     plt.xlabel('Predicted label')
 
 #Models and weights
-singleFrame_model = 'deploy_singleFrame.prototxt'
+model = 'deploy_batModel.prototxt'
 RGB_singleFrame = 'bat_model_fold_2_iter_1000.caffemodel'
 
-RGB_singleFrame_net =  caffe.Net(singleFrame_model, RGB_singleFrame, caffe.TEST)
+net =  caffe.Net(model, RGB_singleFrame, caffe.TEST)
 
-output = singleFrame_classify_images(RGB_images, RGB_singleFrame_net, transformer_RGB)
-del RGB_singleFrame_net
+output = classify_images(RGB_images, net, transformer_RGB)
+del net
 
 matrix = confusion_matrix(y_true,output)
 precision = precision_score(y_true, output)
@@ -86,5 +84,5 @@ print("\n")
 print(f1)
 print("\n")
 print(recall)
-#print("\n")
-#print(matrix)
+print("\n")
+print(matrix)

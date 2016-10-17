@@ -1,4 +1,4 @@
-name: "singleFrame_RGB"
+name: "batModel"
 input: "data"
 input_dim: 1
 input_dim: 3

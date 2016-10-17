@@ -89,34 +89,4 @@ for train_index, test_index in skf:
 	g.writelines(test_lines)
 	
 	ind+=1
-	
-	
 
-"""
-shuffle(test_frames)
-shuffle(train_frames)
-
-f = open("bat_train.txt", "w")
-g = open("bat_test.txt", "w")
-train_lines=[]
-test_lines=[]
-
-for value in train_frames:
-    v_ = value.split("/")[1:]
-    v_ = v_[0]+ "/" + v_[1]
-
-    class_index = value.split("/")[1]
-    str_ = str(v_) + " " + str(classes[class_index]) + "\n"
-    train_lines.append(str_)
-
-for value in test_frames:
-    v_ = value.split("/")[1:]
-    v_ = v_[0]+ "/" + v_[1]
-
-    class_index = value.split("/")[1]
-    str_ = str(v_) + " " + str(classes[class_index]) + "\n"
-    test_lines.append(str_)
-
-f.writelines(train_lines)
-g.writelines(test_lines)
-"""
