@@ -387,7 +387,7 @@ layer {
     decay_mult: 0
   }
   inner_product_param {
-    num_output: 10        # output 10 values
+    num_output: 8        # output 8 values
     weight_filler {
       type: "gaussian"    # initialize the filter from the Gaussian
       std: 0.01           # distribution with stdev 0.01

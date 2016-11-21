@@ -48,7 +48,7 @@ def classify_images(frames, net, transformer):
       
     out = net.forward()
     # getting the probabilities
-    val =out['probs'][0][:10]
+    val =out['probs'][0][:8]
 
     output_predictions[c]=np.argmax(val)
 
@@ -57,17 +57,18 @@ def classify_images(frames, net, transformer):
 
   return output_predictions
 
-def plot_confusion_matrix(cm, title='Confusion matrix', cmap=plt.cm.Blues):
+def plot_confusion_matrix(cm, title='Confusion matrix Fold 0', cmap=plt.cm.Blues):
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
     plt.colorbar()
-    tick_marks = np.arange(10)
+    tick_marks = np.arange(8)
     plt.ylabel('True label')
     plt.xlabel('Predicted label')
+    plt.show()
 
 #Models and weights
-model = 'deploy_batModel.prototxt'
-RGB_singleFrame = 'bat_model_fold_2_iter_1000.caffemodel'
+model = 'deploy_mlpModel.prototxt'
+RGB_singleFrame = 'mlp_model_fold_2_iter_800.caffemodel'
 
 net =  caffe.Net(model, RGB_singleFrame, caffe.TEST)
 
@@ -75,14 +76,14 @@ output = classify_images(RGB_images, net, transformer_RGB)
 del net
 
 matrix = confusion_matrix(y_true,output)
-precision = precision_score(y_true, output)
-f1 = f1_score(y_true, output)
-recall = recall_score(y_true, output)
+precision = precision_score(y_true, output, average="weighted")
+f1 = f1_score(y_true, output, average="weighted")
+recall = recall_score(y_true, output, average="weighted")
 
-print(precision)
+print("precision : ", precision)
 print("\n")
-print(f1)
+print("f1 : ", f1)
 print("\n")
-print(recall)
+print("recall : ", recall)
 print("\n")
 print(matrix)

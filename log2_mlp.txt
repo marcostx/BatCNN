@@ -1,0 +1,15 @@
+I1024 22:37:13.049451  3516 solver.cpp:244]     Train net output #1: loss = 1.80297 (* 1 = 1.80297 loss)
+I1024 22:37:13.049688  3516 sgd_solver.cpp:106] Iteration 796, lr = 0.001
+I1024 22:37:13.216840  3516 solver.cpp:228] Iteration 798, loss = 1.78901
+I1024 22:37:13.229648  3516 solver.cpp:244]     Train net output #0: accuracy = 0.369231
+I1024 22:37:13.229807  3516 solver.cpp:244]     Train net output #1: loss = 1.78901 (* 1 = 1.78901 loss)
+I1024 22:37:13.229925  3516 sgd_solver.cpp:106] Iteration 798, lr = 0.001
+I1024 22:37:13.316704  3516 solver.cpp:454] Snapshotting to binary proto file mlp_model_fold_2_iter_800.caffemodel
+I1024 22:37:13.342211  3516 sgd_solver.cpp:273] Snapshotting solver state to binary proto file mlp_model_fold_2_iter_800.solverstate
+I1024 22:37:13.388587  3516 solver.cpp:317] Iteration 800, loss = 1.8295
+I1024 22:37:13.400184  3516 solver.cpp:337] Iteration 800, Testing net (#0)
+I1024 22:37:13.664695  3516 solver.cpp:404]     Test net output #0: accuracy = 0.342308
+I1024 22:37:13.667955  3516 solver.cpp:404]     Test net output #1: loss = 1.82773 (* 1 = 1.82773 loss)
+I1024 22:37:13.668050  3516 solver.cpp:322] Optimization Done.
+I1024 22:37:13.668124  3516 caffe.cpp:222] Optimization Done.
+Done.

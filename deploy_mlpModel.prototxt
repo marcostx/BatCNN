@@ -1,0 +1,72 @@
+name: "mlpModel"
+input: "data"
+input_dim: 1
+input_dim: 3
+input_dim: 56
+input_dim: 92
+layer {
+  name: "fc1"
+  type: "InnerProduct"
+  bottom: "data"
+  top: "fc1"
+  # learning rate and decay multipliers for the weights
+  param {
+    lr_mult: 1
+    decay_mult: 1
+  }
+  # learning rate and decay multipliers for the biases
+  param {
+    lr_mult: 2
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 20      # output 20 features
+    weight_filler {
+      type: "gaussian"  # initialize the filter from the Gaussian
+      std: 0.01         # distribution with stdev 0.01 
+    }
+    bias_filler {
+      type: "constant" # initialize the biases to 0.1
+      value: 0.1
+    }
+  }
+}
+layer {
+  name: "relu1"
+  type: "ReLU"
+  bottom: "fc1"
+  top: "fc1"
+}
+layer {
+  name: "fc2"
+  type: "InnerProduct"
+  bottom: "fc1"
+  top: "fc2"
+  # learning rate and decay multipliers for the weights
+  param {
+    lr_mult: 10
+    decay_mult: 1
+  }
+  # learning rate and decay multipliers for the biases
+  param {
+    lr_mult: 20
+    decay_mult: 0
+  }
+  inner_product_param {
+    num_output: 8        # output 8 values
+    weight_filler {
+      type: "gaussian"    # initialize the filter from the Gaussian
+      std: 0.01           # distribution with stdev 0.01
+    }
+    bias_filler {
+      type: "constant"    # initialize biases with 0.1
+      value: 0
+    }
+  }
+}
+layer {
+  name: "probs"
+  type: "Softmax"
+  bottom: "fc2"
+  top: "probs"
+}
