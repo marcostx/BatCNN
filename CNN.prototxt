@@ -1,4 +1,4 @@
-name: "stateFarmModel"
+name: "batModel"
 layer {
   name: "data"
   type: "ImageData"
